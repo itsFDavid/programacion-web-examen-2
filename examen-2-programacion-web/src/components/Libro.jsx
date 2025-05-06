@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState } from 'react';
 import { AppContext } from '../context/AppContext';
 import { useContext } from 'react';
 
@@ -10,8 +9,16 @@ const Libro = ({libro}) => {
   const fechaFormateada = `${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
   const leidoTexto = leido ? 'Sí' : 'No';
 
-  const [editando, setEditando] = useState(false);
-  const { deleteLibro } = useContext (AppContext);
+  const { deleteLibro, setLibroEditando, libroEditando } = useContext (AppContext);
+  
+  const handleEdit = () => {
+    // setLibroEditando(libro);
+    if (libroEditando) {
+      setLibroEditando(null);
+    } else {
+      setLibroEditando(libro);
+    }
+  }
 
   const handleDelete = (libro) => {
     if (window.confirm(`¿Estás seguro de que quieres eliminar el libro "${libro.titulo}"?`)) {
@@ -26,12 +33,14 @@ const Libro = ({libro}) => {
       <p>Género: {genero}</p>
       <p>Fecha de publicación: {fechaFormateada}</p>
       <p>Leído: {leidoTexto}</p>
-      <button onClick={() => setEditando(!editando)}>
-        {editando ? 'Cancelar' : 'Editar'}
-      </button>
-      <button onClick={() => handleDelete(libro)}>
-        Eliminar libro
-      </button>
+      <div className='botones_libro'>
+        <button onClick={handleEdit}>
+          {libroEditando ? 'Cancelar' : 'Editar libro'}
+        </button>
+        <button onClick={() => handleDelete(libro)} className='btn_eliminar'>
+          Eliminar libro
+        </button>
+      </div>
       <hr />
 
     </div>

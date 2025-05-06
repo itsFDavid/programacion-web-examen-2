@@ -1,9 +1,13 @@
 import { createContext } from "react";
 import useLocalStorage from "../Hooks/useLocalStorage";
+import { useState } from "react";
 
 export const AppContext = createContext();
 
 const AppContextProvider = ({children}) => {
+  // useLocalStorage('libros', []);
+  // useLocalStorage('librosLeidos', []);
+  const [libroEditando, setLibroEditando] = useState(null);
 
   const [libros, setLibros] = useLocalStorage('libros', 
     [
@@ -69,8 +73,28 @@ const AppContextProvider = ({children}) => {
   // }
 
   const setLibroLeido = (libroLeido) => {
-    setLibros(libros.filter(libro => libro.titulo !== libroLeido.titulo));
+    // setLibros(libros.filter(libro => libro.titulo !== libroLeido.titulo));
     setLibrosLeidos([...librosLeidos, libroLeido]);
+  }
+
+  const editLibro = (libroEditado) => {
+    const { titulo, autor, genero, fecha_publicacion, leido } = libroEditado;
+    const libroExistente = libros.find(libro => libro.titulo === titulo);
+    if (libroExistente) {
+      const librosActualizados = libros.map(libro => {
+        if (libro.titulo === titulo) {
+          return { ...libro, autor, genero, fecha_publicacion, leido };
+        }
+        return libro;
+      });
+      setLibros(librosActualizados);
+    } else {
+      console.error(`El libro con título "${titulo}" no existe.`);
+    }
+  }
+  const deleteLibro = (titulo) => {
+    const librosActualizados = libros.filter(libro => libro.titulo !== titulo);
+    setLibros(librosActualizados);
   }
 
 
@@ -80,7 +104,11 @@ const AppContextProvider = ({children}) => {
     librosLeidos,
     setLibrosLeidos,
     setLibro,
-    setLibroLeido
+    setLibroLeido,
+    editLibro,
+    deleteLibro,
+    libroEditando,
+    setLibroEditando
   }
   return (
     <AppContext.Provider value={dataContext}>
