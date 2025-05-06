@@ -87,6 +87,32 @@ button:hover {
   background-color: #0056b3;
 }
 
+.botones_libro {
+  margin: 1rem 0;
+  display: flex;
+  gap: 10px;
+}
+
+.btn_eliminar {
+  background-color: #ff0000;
+}
+.btn_eliminar:hover {
+  background-color: #c30000;
+}
+
+.input_busqueda {
+  background: transparent;
+  border: 0;
+  padding: 1rem;
+  border-bottom: #0056b3 2px solid;
+  margin-bottom: 1rem;
+  width: 80%;
+}
+.input_busqueda:focus {
+  outline: none;
+  border-bottom: #007bff 2px solid;
+}
+
 .form_agregar {
   display: flex;
   flex-direction: column;
@@ -96,6 +122,18 @@ button:hover {
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form_agregar input {
+  background: transparent;
+  border: 0;
+  padding: 0.4rem;
+  border-bottom: #0056b3 2px solid;
+}
+
+.form_agregar input:focus {
+  outline: none;
+  border-bottom: #007bff 2px solid;
 }
 
 @media (max-width: 768px) {
