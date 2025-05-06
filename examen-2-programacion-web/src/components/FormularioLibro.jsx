@@ -48,9 +48,13 @@ const FormularioLibro = () => {
   return (
     <form onSubmit={handleSubmit} className='form_agregar'>
       <h2>{libroEditando ? 'Editar Libro' : 'Agregar Libro'}</h2>
+      <label htmlFor="titulo">Titulo:</label>
       <input name="titulo" placeholder="Título" value={nuevoLibro.titulo} onChange={handleChange} required />
+      <label htmlFor="autor">Autor:</label>
       <input name="autor" placeholder="Autor" value={nuevoLibro.autor} onChange={handleChange} required />
+      <label htmlFor="genero">Género:</label>
       <input name="genero" placeholder="Género" value={nuevoLibro.genero} onChange={handleChange} required />
+      <label htmlFor="fecha_publicacion">Fecha de publicación:</label>
       <input name="fecha_publicacion" type="date" value={nuevoLibro.fecha_publicacion} onChange={handleChange} required />
       <label>
         Leído:
