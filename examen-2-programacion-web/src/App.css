@@ -87,6 +87,19 @@ button:hover {
   background-color: #0056b3;
 }
 
+.buscador {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.label_leidos{
+  color: #333;
+  width: 10%;
+}
+
 .botones_libro {
   margin: 1rem 0;
   display: flex;
